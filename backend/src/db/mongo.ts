@@ -41,8 +41,10 @@ const createIndexes = async (database: Db) => {
     // Create index for userId
     await documentsCollection.createIndex({ userId: 1 });
     
-    // Create text index for search
-    await documentsCollection.createIndex({ name: 'text', tags: 'text' });
+    // Note: Text indexes are not supported with strict API mode
+    // Using regular indexes instead
+    await documentsCollection.createIndex({ name: 1 });
+    await documentsCollection.createIndex({ tags: 1 });
     
     console.log('✅ Database indexes created successfully');
   } catch (error) {

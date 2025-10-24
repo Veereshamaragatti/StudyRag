@@ -14,7 +14,7 @@ export const askGemini = async (
   conversationHistory: { role: string; content: string }[] = []
 ): Promise<GeminiResponse> => {
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
+    const model = genAI.getGenerativeModel({ model: 'models/gemini-2.5-flash' });
 
     // Build the prompt with context and conversation history
     const contextText = context.join('\n\n---\n\n');
@@ -32,13 +32,24 @@ export const askGemini = async (
     prompt += `Question: ${query}\n\n`;
     prompt += `Instructions:
 1. Answer the question based on the provided context
-2. Be detailed and academic in your response
-3. If the context doesn't contain enough information, acknowledge it
-4. After your answer, suggest 3 relevant follow-up questions the user might ask
-5. Format your response as:
+2. **Always tailor the length and depth of your answer to match the question:**
+   - For simple factual questions (who, what, when, where): Give a concise 1-3 sentence answer
+   - For "why" or "how" questions: Provide a detailed explanation
+   - For analytical or comparative questions: Give a comprehensive, structured response
+3. **IMPORTANT - Format your answer in POINTS for easy reading:**
+   - Break down information into clear bullet points (•)
+   - Each point should be ONE clear idea or fact
+   - Use **bold** for key terms and names
+   - Use sub-bullets for related details
+   - Keep each point short and focused (1-2 sentences max)
+   - Avoid long paragraphs - prefer structured points
+4. Avoid unnecessary repetition or excessive elaboration
+5. If the context doesn't contain enough information, acknowledge it briefly
+6. After your answer, suggest 3 relevant follow-up questions
+7. Format your response as:
 
 ANSWER:
-[Your detailed answer here]
+[Your answer in clear bullet points with bold key terms]
 
 FOLLOW-UP QUESTIONS:
 1. [Question 1]
@@ -81,7 +92,7 @@ export const askGeminiWithImage = async (
   context: string[] = []
 ): Promise<GeminiResponse> => {
   try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
+    const model = genAI.getGenerativeModel({ model: 'models/gemini-2.5-flash' });
 
     const contextText = context.length > 0 
       ? `\n\nContext from your documents:\n${context.join('\n\n---\n\n')}`

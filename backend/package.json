@@ -9,11 +9,16 @@
     "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["rag", "gemini", "mongodb", "oauth"],
+  "keywords": [
+    "rag",
+    "gemini",
+    "mongodb",
+    "oauth"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google/generative-ai": "^0.21.0",
+    "@google/generative-ai": "^0.24.1",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -24,6 +29,7 @@
     "mammoth": "^1.8.0",
     "mongodb": "^6.3.0",
     "multer": "^1.4.5-lts.1",
+    "node-fetch": "^3.3.2",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
     "pdf-parse": "^1.1.1",

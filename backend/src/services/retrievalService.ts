@@ -7,6 +7,8 @@ export interface RetrievalResult {
   score: number;
   documentId: string;
   documentName: string;
+  page?: number;
+  chunkIndex?: number;
 }
 
 // Cosine similarity function
@@ -33,8 +35,18 @@ export const retrieveRelevantChunks = async (
     const db = getDB();
     const documentsCollection = db.collection('documents');
 
-    // Generate embedding for the query
-    const queryEmbedding = await generateEmbedding(query);
+    // Try to generate embedding for the query
+    let queryEmbedding: number[];
+    try {
+      queryEmbedding = await generateEmbedding(query);
+    } catch (embeddingError: any) {
+      // If embedding fails (quota exceeded), return empty results gracefully
+      if (embeddingError.message && embeddingError.message.includes('quota')) {
+        console.log('⚠️  Embedding quota exceeded, skipping document retrieval');
+        return [];
+      }
+      throw embeddingError;
+    }
 
     // Get all documents for the user
     const userDocuments = await documentsCollection
@@ -51,7 +63,8 @@ export const retrieveRelevantChunks = async (
     for (const doc of userDocuments) {
       if (!doc.chunks || doc.chunks.length === 0) continue;
 
-      for (const chunk of doc.chunks) {
+      for (let i = 0; i < doc.chunks.length; i++) {
+        const chunk = doc.chunks[i];
         if (!chunk.embedding || chunk.embedding.length === 0) continue;
 
         const similarity = cosineSimilarity(queryEmbedding, chunk.embedding);
@@ -61,6 +74,8 @@ export const retrieveRelevantChunks = async (
           score: similarity,
           documentId: doc._id.toString(),
           documentName: doc.name,
+          page: chunk.page,
+          chunkIndex: i,
         });
       }
     }
@@ -70,7 +85,8 @@ export const retrieveRelevantChunks = async (
     return results.slice(0, topK);
   } catch (error) {
     console.error('Error retrieving relevant chunks:', error);
-    throw new Error('Failed to retrieve relevant chunks');
+    // Return empty array instead of throwing error
+    return [];
   }
 };
 

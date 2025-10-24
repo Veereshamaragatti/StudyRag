@@ -46,8 +46,12 @@ export const askQuestion = async (req: Request, res: Response) => {
       question || 'Analyze this image',
       5
     );
-
+    
     const context = relevantChunks.map(chunk => chunk.text);
+    
+    if (context.length === 0) {
+      console.log('⚠️  No document context available (quota exceeded or no documents), answering with general knowledge...');
+    }
 
     // Get conversation history (last 5 messages)
     const conversationHistory = chat.messages
@@ -118,7 +122,17 @@ export const getChatHistory = async (req: Request, res: Response) => {
       .sort({ updatedAt: -1 })
       .toArray();
 
-    res.json({ chats });
+    // Add title to each chat (first user message or "New conversation")
+    const chatsWithTitles = chats.map(chat => ({
+      _id: chat._id,
+      title: chat.messages && chat.messages.length > 0 
+        ? chat.messages[0].content.substring(0, 50) + (chat.messages[0].content.length > 50 ? '...' : '')
+        : 'New conversation',
+      updatedAt: chat.updatedAt,
+      messageCount: chat.messages?.length || 0,
+    }));
+
+    res.json({ chats: chatsWithTitles });
   } catch (error) {
     console.error('Error getting chat history:', error);
     res.status(500).json({ error: 'Failed to get chat history' });
