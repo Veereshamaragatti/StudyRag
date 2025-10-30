@@ -17,35 +17,31 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ role, content, timestamp 
       <div
         className={`max-w-3xl px-5 py-4 rounded-2xl ${
           isUser
-            ? 'bg-blue-600 text-white'
-            : 'bg-gray-800 text-gray-100 border border-gray-700'
+            ? 'bg-white text-black'
+            : 'bg-white/5 text-white border border-white/10'
         }`}
       >
         {!isUser && (
-          <div className="font-semibold text-gray-400 text-xs mb-2">Assistant</div>
+          <div className="font-semibold text-white/40 text-xs mb-2">Assistant</div>
         )}
-        <div className={`${isUser ? 'text-white' : 'text-gray-100'}`}>
+        <div className={`${isUser ? 'text-black' : 'text-white'}`}>
           {isUser ? (
             <p className="whitespace-pre-wrap">{content}</p>
           ) : (
             <ReactMarkdown 
               className="prose prose-sm prose-invert max-w-none markdown-content"
               components={{
-                // Customize bullet points
                 ul: ({node, ...props}) => (
                   <ul className="list-disc ml-4 my-2 space-y-1" {...props} />
                 ),
-                // Customize list items
                 li: ({node, ...props}) => (
                   <li className="ml-2" {...props} />
                 ),
-                // Customize paragraphs
                 p: ({node, ...props}) => (
                   <p className="my-2" {...props} />
                 ),
-                // Customize bold text
                 strong: ({node, ...props}) => (
-                  <strong className="font-bold text-blue-400" {...props} />
+                  <strong className="font-bold text-white" {...props} />
                 ),
               }}
             >
@@ -54,7 +50,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ role, content, timestamp 
           )}
         </div>
         {timestamp && (
-          <div className={`text-xs mt-2 ${isUser ? 'text-blue-200' : 'text-gray-500'}`}>
+          <div className={`text-xs mt-2 ${isUser ? 'text-black/60' : 'text-white/40'}`}>
             {new Date(timestamp).toLocaleTimeString()}
           </div>
         )}

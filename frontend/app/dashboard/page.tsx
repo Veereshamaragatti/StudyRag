@@ -83,46 +83,47 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-900">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+      <div className="min-h-screen flex items-center justify-center bg-black">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-900">
-      {/* Header */}
-      <header className="bg-gray-800 border-b border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-3xl font-bold text-white flex items-center gap-2">
-                🎓 StudyRAG
-              </h1>
-              <p className="text-sm text-gray-400 mt-1">Welcome back, {user?.name}!</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => router.push('/')}
-                className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-medium"
-              >
-                <FiMessageSquare />
-                Go to Chat
-              </button>
-              <button
-                onClick={handleLogout}
-                className="flex items-center gap-2 px-5 py-2.5 bg-gray-700 text-white rounded-xl hover:bg-gray-600 transition-colors"
-              >
-                <FiLogOut />
-                Logout
-              </button>
-            </div>
+    <div className="min-h-screen bg-black">
+      {/* Top Navigation Bar */}
+      <nav className="fixed top-0 left-0 right-0 bg-black border-b border-white/10 z-50">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl">📚</span>
+            <span className="text-2xl font-bold text-white">ChatWithDocs</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => router.push('/')}
+              className="flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-lg hover:bg-white/90 transition-colors font-medium"
+            >
+              <FiMessageSquare />
+              Go to Chat
+            </button>
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 px-5 py-2.5 bg-white/10 text-white rounded-lg hover:bg-white/20 transition-colors"
+            >
+              <FiLogOut />
+              Logout
+            </button>
           </div>
         </div>
-      </header>
+      </nav>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-6 py-24">
+        <div className="mb-12">
+          <h1 className="text-4xl font-bold text-white mb-2">Document Management</h1>
+          <p className="text-white/60">Welcome back, {user?.name}!</p>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Upload Section */}
           <div className="lg:col-span-1">
@@ -131,42 +132,42 @@ export default function DashboardPage() {
 
           {/* Documents List */}
           <div className="lg:col-span-2">
-            <div className="bg-gray-800 border border-gray-700 rounded-2xl p-6">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
               <h2 className="text-2xl font-bold mb-6 text-white flex items-center gap-2">
                 📚 Your Documents 
-                <span className="text-sm font-normal text-gray-400">({documents.length})</span>
+                <span className="text-sm font-normal text-white/40">({documents.length})</span>
               </h2>
 
               {documents.length === 0 ? (
-                <div className="text-center py-16 text-gray-400">
+                <div className="text-center py-16 text-white/40">
                   <FiFileText size={64} className="mx-auto mb-4 opacity-30" />
                   <p className="text-lg mb-2">No documents uploaded yet</p>
-                  <p className="text-sm text-gray-500">Upload your first document to get started!</p>
+                  <p className="text-sm text-white/30">Upload your first document to get started!</p>
                 </div>
               ) : (
                 <div className="space-y-3">
                   {documents.map((doc) => (
                     <div
                       key={doc._id}
-                      className="bg-gray-900/50 border border-gray-700 rounded-xl p-5 hover:border-gray-600 transition-all hover:shadow-lg"
+                      className="bg-white/5 border border-white/10 rounded-xl p-5 hover:border-white/20 transition-all hover:bg-white/10"
                     >
                       <div className="flex justify-between items-start">
                         <div className="flex-1">
                           <h3 className="font-semibold text-white mb-1 text-lg">{doc.name}</h3>
-                          <p className="text-sm text-gray-400 mb-3">{doc.originalName}</p>
+                          <p className="text-sm text-white/60 mb-3">{doc.originalName}</p>
                           
                           <div className="flex flex-wrap gap-2 mb-3">
                             {doc.tags && doc.tags.map((tag, index) => (
                               <span
                                 key={index}
-                                className="px-3 py-1 bg-blue-600/20 text-blue-400 text-xs rounded-full border border-blue-500/30"
+                                className="px-3 py-1 bg-white/10 text-white text-xs rounded-full border border-white/20"
                               >
                                 {tag}
                               </span>
                             ))}
                           </div>
                           
-                          <div className="flex gap-4 text-xs text-gray-500">
+                          <div className="flex gap-4 text-xs text-white/40">
                             <span className="flex items-center gap-1">
                               📦 {formatFileSize(doc.size)}
                             </span>
@@ -179,7 +180,7 @@ export default function DashboardPage() {
 
                         <button
                           onClick={() => handleDeleteDocument(doc._id)}
-                          className="text-red-400 hover:text-red-300 hover:bg-red-500/10 p-2 rounded-lg transition-all"
+                          className="text-white/60 hover:text-white hover:bg-white/10 p-2 rounded-lg transition-all"
                           title="Delete document"
                         >
                           <FiTrash2 size={20} />

@@ -11,7 +11,7 @@ const GoogleLoginButton: React.FC = () => {
   return (
     <button
       onClick={handleGoogleLogin}
-      className="flex items-center justify-center gap-3 px-8 py-4 bg-white text-gray-900 rounded-xl hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-2xl hover:scale-105 font-medium text-lg w-full"
+      className="flex items-center justify-center gap-3 px-8 py-4 bg-white text-black border-2 border-black rounded-lg hover:bg-black hover:text-white transition-all duration-300 font-semibold text-lg w-full shadow-lg"
     >
       <FcGoogle size={28} />
       <span className="font-semibold">Continue with Google</span>
