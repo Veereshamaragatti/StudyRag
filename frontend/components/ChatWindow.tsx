@@ -128,8 +128,16 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ chatId: initialChatId, initialM
     setFollowUpQuestions([]);
   };
 
-  const handleVoiceTranscript = (transcript: string) => {
+  const handleVoiceTranscript = (transcript: string, autoSend: boolean = false) => {
+    console.log('📝 Received transcript:', transcript);
     setInput(transcript);
+    
+    // Auto-send if requested (when user stops speaking)
+    if (autoSend && transcript.trim()) {
+      setTimeout(() => {
+        handleSend();
+      }, 100);
+    }
   };
 
   return (
