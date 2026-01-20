@@ -15,9 +15,9 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ role, content, timestamp 
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-4 message-slide-in`}>
       <div
-        className={`max-w-3xl px-5 py-4 rounded-2xl shadow-lg ${
+        className={`max-w-3xl px-5 py-4 rounded-2xl ${
           isUser
-            ? 'bg-white text-black'
+            ? 'bg-white/10 border border-white/20 text-white'
             : 'glass text-white'
         }`}
       >
@@ -27,7 +27,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ role, content, timestamp 
             <span className="font-medium text-white/60 text-xs">Assistant</span>
           </div>
         )}
-        <div className={`${isUser ? 'text-black' : 'text-white/90'}`}>
+        <div className="text-white/90">
           {isUser ? (
             <p className="whitespace-pre-wrap">{content}</p>
           ) : (
@@ -53,7 +53,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ role, content, timestamp 
           )}
         </div>
         {timestamp && (
-          <div className={`text-xs mt-3 ${isUser ? 'text-black/50' : 'text-white/40'}`}>
+          <div className="text-xs mt-3 text-white/40">
             {new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </div>
         )}
