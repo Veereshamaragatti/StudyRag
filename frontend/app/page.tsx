@@ -85,7 +85,7 @@ export default function Home() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black">
         <div className="text-center">
-          <div className="w-16 h-16 rounded-full border-4 border-indigo-500/20 border-t-indigo-500 animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 rounded-full border-4 border-white/20 border-t-white animate-spin mx-auto mb-4"></div>
           <p className="text-white/40 text-sm">Loading...</p>
         </div>
       </div>
@@ -98,11 +98,10 @@ export default function Home() {
       <div className={`${sidebarOpen ? 'w-64' : 'w-0'} transition-all duration-300 bg-black border-r border-white/10 flex flex-col overflow-hidden flex-shrink-0`}>
         {sidebarOpen && (
           <>
-            {/* Sidebar Header */}
             <div className="p-4 border-b border-white/10">
               <button
                 onClick={handleNewChat}
-                className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:opacity-90 rounded-xl transition-all font-medium btn-shine"
+                className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-white text-black hover:bg-white/90 rounded-xl transition-all font-medium"
               >
                 <FiPlus size={18} />
                 <span>New Chat</span>
@@ -130,16 +129,16 @@ export default function Home() {
                       onClick={() => handleSelectChat(chat._id)}
                       className={`w-full text-left px-3 py-2.5 rounded-lg transition-all group flex items-center gap-3 ${
                         selectedChatId === chat._id 
-                          ? 'bg-gradient-to-r from-indigo-500/20 to-purple-500/10 border-l-2 border-indigo-500' 
+                          ? 'bg-white/10 border-l-2 border-white' 
                           : 'hover:bg-white/5 border-l-2 border-transparent'
                       }`}
                     >
                       <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
                         selectedChatId === chat._id 
-                          ? 'bg-gradient-to-br from-indigo-500 to-purple-500' 
+                          ? 'bg-white text-black' 
                           : 'bg-white/5 group-hover:bg-white/10'
                       }`}>
-                        <FiMessageSquare size={14} className={selectedChatId === chat._id ? 'text-white' : 'text-white/40'} />
+                        <FiMessageSquare size={14} className={selectedChatId === chat._id ? 'text-black' : 'text-white/40'} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className={`text-sm truncate ${
@@ -163,7 +162,7 @@ export default function Home() {
                 onClick={() => router.push('/dashboard')}
                 className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/5 rounded-xl transition-all text-sm text-white/70 hover:text-white group"
               >
-                <FiFolder size={18} className="group-hover:text-indigo-400 transition-colors" />
+                <FiFolder size={18} className="group-hover:text-white transition-colors" />
                 <span>My Documents</span>
               </button>
               <button
@@ -190,14 +189,14 @@ export default function Home() {
               {sidebarOpen ? <FiX size={20} /> : <FiMenu size={20} />}
             </button>
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
                 <span className="text-sm">📚</span>
               </div>
-              <span className="text-xl font-bold gradient-text">StudyRag</span>
+              <span className="text-xl font-bold text-white">ChatWithDocs</span>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-xs font-bold">
+            <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-xs font-bold">
               {user?.name?.charAt(0).toUpperCase()}
             </div>
             <span className="text-sm text-white/60">{user?.name}</span>

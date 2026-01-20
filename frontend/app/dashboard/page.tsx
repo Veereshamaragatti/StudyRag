@@ -85,7 +85,7 @@ export default function DashboardPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black">
         <div className="text-center">
-          <div className="w-16 h-16 rounded-full border-4 border-indigo-500/20 border-t-indigo-500 animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 rounded-full border-4 border-white/20 border-t-white animate-spin mx-auto mb-4"></div>
           <p className="text-white/40 text-sm">Loading...</p>
         </div>
       </div>
@@ -98,15 +98,15 @@ export default function DashboardPage() {
       <nav className="fixed top-0 left-0 right-0 bg-black/80 backdrop-blur-md border-b border-white/10 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
               <span className="text-xl">📚</span>
             </div>
-            <span className="text-xl font-bold gradient-text">StudyRag</span>
+            <span className="text-xl font-bold text-white">ChatWithDocs</span>
           </div>
           <div className="flex items-center gap-3">
             <button
               onClick={() => router.push('/')}
-              className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-xl hover:opacity-90 transition-all font-medium shadow-lg shadow-indigo-500/20"
+              className="flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-xl hover:bg-white/90 transition-all font-medium"
             >
               <FiMessageSquare />
               Go to Chat
@@ -126,7 +126,7 @@ export default function DashboardPage() {
       <main className="max-w-7xl mx-auto px-6 py-24">
         <div className="mb-12 fade-in">
           <h1 className="text-4xl font-bold text-white mb-2">Document Management</h1>
-          <p className="text-white/60">Welcome back, <span className="text-indigo-400">{user?.name}</span>!</p>
+          <p className="text-white/60">Welcome back, <span className="text-white">{user?.name}</span>!</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -139,7 +139,7 @@ export default function DashboardPage() {
           <div className="lg:col-span-2 fade-in">
             <div className="glass rounded-2xl p-6 border border-white/10">
               <h2 className="text-2xl font-bold mb-6 text-white flex items-center gap-2">
-                <span className="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-lg">📚</span>
+                <span className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-lg">📚</span>
                 Your Documents 
                 <span className="text-sm font-normal text-white/40 ml-2">({documents.length})</span>
               </h2>
@@ -168,7 +168,7 @@ export default function DashboardPage() {
                             {doc.tags && doc.tags.map((tag, index) => (
                               <span
                                 key={index}
-                                className="px-3 py-1 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 text-indigo-300 text-xs rounded-full border border-indigo-500/30"
+                                className="px-3 py-1 bg-white/10 text-white/70 text-xs rounded-full border border-white/20"
                               >
                                 {tag}
                               </span>
@@ -180,7 +180,7 @@ export default function DashboardPage() {
                               📦 {formatFileSize(doc.size)}
                             </span>
                             <span>•</span>
-                            <span className="text-indigo-400">{doc.chunksCount || 0} chunks</span>
+                            <span className="text-white/60">{doc.chunksCount || 0} chunks</span>
                             <span>•</span>
                             <span>{new Date(doc.uploadedAt).toLocaleDateString()}</span>
                           </div>

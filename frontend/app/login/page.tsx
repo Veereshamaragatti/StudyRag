@@ -11,10 +11,10 @@ export default function LoginPage() {
       <nav className="bg-black/50 backdrop-blur-sm border-b border-white/10 z-50 flex-shrink-0">
         <div className="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
               <span className="text-xl">📚</span>
             </div>
-            <span className="text-xl font-bold gradient-text">StudyRag</span>
+            <span className="text-xl font-bold text-white">ChatWithDocs</span>
           </div>
         </div>
       </nav>
@@ -47,9 +47,9 @@ export default function LoginPage() {
               <div className="text-center">
                 <p className="text-white/30 text-xs">
                   By continuing, you agree to our{' '}
-                  <span className="text-indigo-400 hover:text-indigo-300 cursor-pointer transition-colors">Terms of Service</span>
+                  <span className="text-white/60 hover:text-white cursor-pointer transition-colors">Terms of Service</span>
                   {' '}and{' '}
-                  <span className="text-indigo-400 hover:text-indigo-300 cursor-pointer transition-colors">Privacy Policy</span>
+                  <span className="text-white/60 hover:text-white cursor-pointer transition-colors">Privacy Policy</span>
                 </p>
               </div>
             </div>
@@ -57,14 +57,14 @@ export default function LoginPage() {
         </div>
 
         {/* Right Side - Project Info Section */}
-        <div className="w-1/2 flex items-center justify-center bg-gradient-to-br from-indigo-500/10 via-purple-500/5 to-transparent border-l border-white/10 text-white px-20">
+        <div className="w-1/2 flex items-center justify-center bg-white/5 border-l border-white/10 text-white px-20">
           <div className="max-w-xl w-full fade-in">
             <div className="mb-10">
               <h2 className="text-3xl font-bold mb-4 flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center">
                   <span className="text-2xl">💬</span>
                 </div>
-                <span className="gradient-text">StudyRag</span>
+                <span className="text-white">ChatWithDocs</span>
               </h2>
               <p className="text-lg text-white/60 mb-3">
                 Your AI-Powered Document Assistant
@@ -77,7 +77,7 @@ export default function LoginPage() {
             <div className="space-y-4" id="features">
               <div className="glass rounded-xl p-4 hover-lift transition-all">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
                     <span className="text-lg">📄</span>
                   </div>
                   <h3 className="font-semibold text-white">Smart Document Analysis</h3>
@@ -87,7 +87,7 @@ export default function LoginPage() {
 
               <div className="glass rounded-xl p-4 hover-lift transition-all">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
                     <span className="text-lg">🤖</span>
                   </div>
                   <h3 className="font-semibold text-white">AI Chat</h3>
@@ -97,7 +97,7 @@ export default function LoginPage() {
 
               <div className="glass rounded-xl p-4 hover-lift transition-all">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-yellow-500 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
                     <span className="text-lg">🎯</span>
                   </div>
                   <h3 className="font-semibold text-white">Multimodal Support</h3>
@@ -107,7 +107,7 @@ export default function LoginPage() {
 
               <div className="glass rounded-xl p-4 hover-lift transition-all">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-red-500 to-pink-500 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
                     <span className="text-lg">🔒</span>
                   </div>
                   <h3 className="font-semibold text-white">Secure & Private</h3>

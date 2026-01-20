@@ -111,13 +111,14 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ chatId: initialChatId, initialM
         timestamp: new Date(),
       };
       setMessages(prev => [...prev, errorMessage]);
+      clearImage(); // Clear image on error so user can retry
     } finally {
       setLoading(false);
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey && !loading) {
       e.preventDefault();
       handleSend();
     }
@@ -146,7 +147,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ chatId: initialChatId, initialM
       <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
         {messages.length === 0 && (
           <div className="flex flex-col items-center justify-center h-full text-center fade-in">
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center mb-6">
+            <div className="w-20 h-20 rounded-full bg-white/10 border border-white/20 flex items-center justify-center mb-6">
               <span className="text-4xl">📚</span>
             </div>
             <h1 className="text-4xl font-bold mb-4 gradient-text">What are you working on?</h1>
@@ -184,7 +185,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ chatId: initialChatId, initialM
         {followUpQuestions.length > 0 && (
           <div className="glass rounded-xl p-4 fade-in">
             <p className="font-medium text-sm text-white/70 mb-3 flex items-center gap-2">
-              <span className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-xs">💡</span>
+              <span className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center text-xs">💡</span>
               Suggested Questions
             </p>
             <div className="space-y-2">
@@ -260,7 +261,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ chatId: initialChatId, initialM
               <textarea
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyDown}
                 placeholder="Ask anything..."
                 className="flex-1 px-4 py-3 bg-transparent text-white resize-none focus:outline-none placeholder-white/30 min-h-[48px] max-h-[120px]"
                 rows={1}
@@ -274,7 +275,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ chatId: initialChatId, initialM
               <button
                 onClick={handleSend}
                 disabled={(!input.trim() && !selectedImage) || loading}
-                className="p-2.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-xl hover:opacity-90 disabled:opacity-30 disabled:cursor-not-allowed transition-all flex-shrink-0 btn-shine"
+                className="p-2.5 bg-white text-black rounded-xl hover:bg-white/90 disabled:opacity-30 disabled:cursor-not-allowed transition-all flex-shrink-0"
               >
                 <FiSend size={20} />
               </button>
