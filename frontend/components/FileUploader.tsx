@@ -69,9 +69,10 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onUploadSuccess }) => {
   };
 
   return (
-    <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-      <h2 className="text-2xl font-bold mb-6 text-white flex items-center gap-2">
-        📤 Upload Document
+    <div className="glass border border-white/10 rounded-2xl p-6 fade-in">
+      <h2 className="text-2xl font-bold mb-6 text-white flex items-center gap-3">
+        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-lg">📤</div>
+        Upload Document
       </h2>
 
       <div className="space-y-4">
@@ -91,19 +92,21 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onUploadSuccess }) => {
             />
             <label
               htmlFor="file-upload"
-              className="flex items-center justify-center gap-2 px-4 py-4 border-2 border-dashed border-white/20 rounded-xl cursor-pointer hover:border-white hover:bg-white/5 transition-all text-white"
+              className="flex items-center justify-center gap-2 px-4 py-6 border-2 border-dashed border-white/20 rounded-xl cursor-pointer hover:border-indigo-400 hover:bg-indigo-500/5 transition-all text-white group"
             >
-              <FiUpload size={20} />
-              <span className="font-medium">{selectedFile ? 'Change File' : 'Choose File'}</span>
+              <FiUpload size={24} className="text-white/60 group-hover:text-indigo-400 transition-colors" />
+              <span className="font-medium text-white/60 group-hover:text-white transition-colors">{selectedFile ? 'Change File' : 'Choose File'}</span>
             </label>
           </div>
         </div>
 
         {/* Selected File Display */}
         {selectedFile && (
-          <div className="flex items-center justify-between bg-white/5 border border-white/10 p-4 rounded-xl">
+          <div className="flex items-center justify-between bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/30 p-4 rounded-xl">
             <div className="flex items-center gap-3">
-              <FiFile className="text-white" size={20} />
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center">
+                <FiFile className="text-white" size={18} />
+              </div>
               <div>
                 <span className="text-sm text-white font-medium block">{selectedFile.name}</span>
                 <span className="text-xs text-white/40">
@@ -111,7 +114,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onUploadSuccess }) => {
                 </span>
               </div>
             </div>
-            <button onClick={clearFile} className="text-white/60 hover:text-white hover:bg-white/10 p-2 rounded-lg transition-all">
+            <button onClick={clearFile} className="text-white/40 hover:text-red-400 hover:bg-red-500/10 p-2 rounded-lg transition-all">
               <FiX size={20} />
             </button>
           </div>
@@ -126,7 +129,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onUploadSuccess }) => {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-white focus:border-transparent text-white placeholder-white/40"
+            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500/50 text-white placeholder-white/40 transition-all"
             placeholder="Enter document name"
             disabled={uploading}
           />
@@ -141,7 +144,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onUploadSuccess }) => {
             type="text"
             value={tags}
             onChange={(e) => setTags(e.target.value)}
-            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-white focus:border-transparent text-white placeholder-white/40"
+            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500/50 text-white placeholder-white/40 transition-all"
             placeholder="e.g., math, physics, notes"
             disabled={uploading}
           />
@@ -149,7 +152,8 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onUploadSuccess }) => {
 
         {/* Error Message */}
         {error && (
-          <div className="bg-white/10 border border-white/20 text-white px-4 py-3 rounded-xl">
+          <div className="bg-red-500/10 border border-red-500/30 text-red-400 px-4 py-3 rounded-xl flex items-center gap-2">
+            <span>⚠️</span>
             {error}
           </div>
         )}
@@ -158,11 +162,11 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onUploadSuccess }) => {
         <button
           onClick={handleUpload}
           disabled={!selectedFile || uploading}
-          className="w-full bg-white text-black py-3 rounded-xl font-semibold hover:bg-white/90 disabled:bg-white/20 disabled:text-white/40 disabled:cursor-not-allowed transition-colors"
+          className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-3 rounded-xl font-semibold hover:opacity-90 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/30"
         >
           {uploading ? (
             <span className="flex items-center justify-center gap-2">
-              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-black"></div>
+              <div className="w-5 h-5 rounded-full border-2 border-white/20 border-t-white animate-spin"></div>
               Uploading...
             </span>
           ) : (

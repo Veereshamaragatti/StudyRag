@@ -210,19 +210,26 @@ const MicInput: React.FC<MicInputProps> = ({ onTranscript }) => {
     <div className="relative">
       <button
         onClick={toggleListening}
-        className={`p-3 rounded-full transition-all ${
+        className={`p-3 rounded-xl transition-all ${
           isListening
-            ? 'bg-red-500 text-white animate-pulse'
-            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white shadow-lg shadow-red-500/30'
+            : 'bg-white/10 text-white/70 hover:bg-white/20 hover:text-white'
         }`}
         title={isListening ? 'Click to stop' : 'Start voice input'}
       >
-        {isListening ? <FiMicOff size={20} /> : <FiMic size={20} />}
+        {isListening ? (
+          <div className="relative">
+            <FiMicOff size={20} />
+            <span className="absolute -top-1 -right-1 w-2 h-2 bg-white rounded-full animate-ping"></span>
+          </div>
+        ) : (
+          <FiMic size={20} />
+        )}
       </button>
       
       {isListening && (
-        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-          Listening...
+        <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap shadow-lg">
+          🎤 Listening...
         </div>
       )}
     </div>

@@ -145,9 +145,17 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ chatId: initialChatId, initialM
       {/* Messages Area */}
       <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
         {messages.length === 0 && (
-          <div className="flex flex-col items-center justify-center h-full text-center">
-            <h1 className="text-4xl font-semibold mb-4 text-white">What are you working on?</h1>
-            <p className="text-white/60 mb-8">Upload documents and start asking questions</p>
+          <div className="flex flex-col items-center justify-center h-full text-center fade-in">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center mb-6">
+              <span className="text-4xl">📚</span>
+            </div>
+            <h1 className="text-4xl font-bold mb-4 gradient-text">What are you working on?</h1>
+            <p className="text-white/50 mb-8 max-w-md">Upload your documents and start asking questions. I'll help you find answers instantly.</p>
+            <div className="flex gap-3 flex-wrap justify-center">
+              <span className="px-4 py-2 glass rounded-full text-sm text-white/60">📄 PDF</span>
+              <span className="px-4 py-2 glass rounded-full text-sm text-white/60">📝 DOCX</span>
+              <span className="px-4 py-2 glass rounded-full text-sm text-white/60">📜 TXT</span>
+            </div>
           </div>
         )}
         
@@ -174,14 +182,17 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ chatId: initialChatId, initialM
         
         {/* Follow-up Questions */}
         {followUpQuestions.length > 0 && (
-          <div className="bg-white/5 border border-white/10 rounded-lg p-4">
-            <p className="font-semibold text-sm text-white/80 mb-2">💡 Suggested Questions:</p>
+          <div className="glass rounded-xl p-4 fade-in">
+            <p className="font-medium text-sm text-white/70 mb-3 flex items-center gap-2">
+              <span className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-xs">💡</span>
+              Suggested Questions
+            </p>
             <div className="space-y-2">
               {followUpQuestions.map((question, index) => (
                 <button
                   key={index}
                   onClick={() => handleFollowUpClick(question)}
-                  className="block w-full text-left px-3 py-2 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 hover:border-white/20 transition-colors text-sm text-white"
+                  className="block w-full text-left px-4 py-3 glass rounded-xl hover:bg-white/10 hover:border-white/20 transition-all text-sm text-white/80 hover:text-white hover-lift"
                 >
                   {question}
                 </button>
@@ -193,66 +204,83 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ chatId: initialChatId, initialM
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Image Preview */}
-      {imagePreview && (
-        <div className="px-6 py-2 bg-black border-t border-white/10">
-          <div className="relative inline-block">
-            <img src={imagePreview} alt="Preview" className="h-20 rounded-lg" />
-            <button
-              onClick={clearImage}
-              className="absolute -top-2 -right-2 bg-white text-black rounded-full p-1 hover:bg-white/90"
-            >
-              <FiX size={16} />
-            </button>
-          </div>
-        </div>
-      )}
-
       {/* Input Area */}
-      <div className="px-6 py-4 bg-black border-t border-white/10">
+      <div className="px-6 py-4 bg-gradient-to-t from-black via-black to-transparent">
         <div className="max-w-3xl mx-auto">
-          <div className="flex items-end gap-2 bg-white/5 border border-white/10 rounded-2xl p-2">
-            {/* Hidden File Input */}
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              onChange={handleImageSelect}
-              className="hidden"
-            />
-            
-            {/* Image Button */}
-            <button
-              onClick={() => fileInputRef.current?.click()}
-              className="p-2 text-white/60 hover:text-white rounded-lg hover:bg-white/5 transition-colors flex-shrink-0"
-              title="Upload image"
-            >
-              <FiImage size={20} />
-            </button>
+          <div className="glass rounded-2xl p-3 hover:border-white/20 transition-all">
+            {/* Image Preview - Inside input box */}
+            {imagePreview && (
+              <div className="flex items-start gap-2 mb-3">
+                <div className="relative group">
+                  <div className="w-14 h-14 rounded-lg overflow-hidden bg-white/10 border border-white/20">
+                    <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                  </div>
+                  {/* Edit button overlay - click to change image */}
+                  <button
+                    onClick={() => fileInputRef.current?.click()}
+                    className="absolute -top-1 -left-1 w-5 h-5 bg-white/90 rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-md"
+                    title="Change image"
+                  >
+                    <svg className="w-3 h-3 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
+                  </button>
+                  {/* Remove button */}
+                  <button
+                    onClick={clearImage}
+                    className="absolute -top-1 -right-1 w-5 h-5 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors shadow-md"
+                    title="Remove image"
+                  >
+                    <FiX size={12} className="text-gray-700" />
+                  </button>
+                </div>
+              </div>
+            )}
 
-            {/* Text Input */}
-            <textarea
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyPress={handleKeyPress}
-              placeholder="Ask anything..."
-              className="flex-1 px-4 py-3 bg-transparent text-white resize-none focus:outline-none placeholder-white/40"
-              rows={1}
-              disabled={loading}
-            />
+            <div className="flex items-end gap-2">
+              {/* Hidden File Input */}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleImageSelect}
+                className="hidden"
+              />
+              
+              {/* Image Button */}
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                className="p-2.5 text-white/50 hover:text-white rounded-xl hover:bg-white/10 transition-all flex-shrink-0"
+                title="Upload image"
+              >
+                <FiImage size={20} />
+              </button>
 
-            {/* Voice Input */}
-            <MicInput onTranscript={handleVoiceTranscript} />
+              {/* Text Input */}
+              <textarea
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder="Ask anything..."
+                className="flex-1 px-4 py-3 bg-transparent text-white resize-none focus:outline-none placeholder-white/30 min-h-[48px] max-h-[120px]"
+                rows={1}
+                disabled={loading}
+              />
 
-            {/* Send Button */}
-            <button
-              onClick={handleSend}
-              disabled={(!input.trim() && !selectedImage) || loading}
-              className="p-2 bg-white text-black hover:bg-white/90 rounded-lg disabled:bg-white/20 disabled:text-white/40 disabled:cursor-not-allowed transition-colors flex-shrink-0"
-            >
-              <FiSend size={20} />
-            </button>
+              {/* Voice Input */}
+              <MicInput onTranscript={handleVoiceTranscript} />
+
+              {/* Send Button */}
+              <button
+                onClick={handleSend}
+                disabled={(!input.trim() && !selectedImage) || loading}
+                className="p-2.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-xl hover:opacity-90 disabled:opacity-30 disabled:cursor-not-allowed transition-all flex-shrink-0 btn-shine"
+              >
+                <FiSend size={20} />
+              </button>
+            </div>
           </div>
+          <p className="text-center text-white/20 text-xs mt-3">Press Enter to send • Shift+Enter for new line</p>
         </div>
       </div>
     </div>

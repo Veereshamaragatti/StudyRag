@@ -15,16 +15,19 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ role, content, timestamp 
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-4 message-slide-in`}>
       <div
-        className={`max-w-3xl px-5 py-4 rounded-2xl ${
+        className={`max-w-3xl px-5 py-4 rounded-2xl shadow-lg ${
           isUser
-            ? 'bg-white text-black'
-            : 'bg-white/5 text-white border border-white/10'
+            ? 'bg-gradient-to-br from-indigo-500 to-purple-600 text-white'
+            : 'glass text-white'
         }`}
       >
         {!isUser && (
-          <div className="font-semibold text-white/40 text-xs mb-2">Assistant</div>
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-xs">✨</div>
+            <span className="font-medium text-white/60 text-xs">Assistant</span>
+          </div>
         )}
-        <div className={`${isUser ? 'text-black' : 'text-white'}`}>
+        <div className={`${isUser ? 'text-white' : 'text-white/90'}`}>
           {isUser ? (
             <p className="whitespace-pre-wrap">{content}</p>
           ) : (
@@ -50,8 +53,8 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ role, content, timestamp 
           )}
         </div>
         {timestamp && (
-          <div className={`text-xs mt-2 ${isUser ? 'text-black/60' : 'text-white/40'}`}>
-            {new Date(timestamp).toLocaleTimeString()}
+          <div className={`text-xs mt-3 ${isUser ? 'text-white/60' : 'text-white/40'}`}>
+            {new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </div>
         )}
       </div>
