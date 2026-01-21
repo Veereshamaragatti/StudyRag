@@ -51,6 +51,7 @@ Welcome to the complete documentation for the StudyRAG Academic Assistant system
    - Visual examples and diagrams
    - Performance considerations
    - Customization guide
+   - Also see: **[CHUNKING_QUICK_REF.md](CHUNKING_QUICK_REF.md)** for a short summary
 
 ## 🔧 Operational Guides
 
@@ -81,6 +82,7 @@ StudyRag/
 │   ├── PROJECT_SUMMARY.md           # Project overview
 │   ├── ARCHITECTURE.md              # Technical architecture
 │   ├── CHUNKING.md                  # Document chunking details
+│   ├── CHUNKING_QUICK_REF.md        # Quick chunking reference
 │   ├── TROUBLESHOOTING.md           # Problem solving
 │   ├── TESTING_GUIDE.md             # Testing procedures
 │   └── DOCUMENTATION_INDEX.md       # This file
@@ -155,6 +157,7 @@ StudyRag/
 → Follow existing code patterns
 
 ### "I want to understand chunking"
+→ Read: **CHUNKING_QUICK_REF.md** ⚡ **QUICK ANSWER**
 → Read: **CHUNKING.md** ⭐ **DETAILED EXPLANATION**
 → Check: `/backend/src/utils/chunkText.ts`
 → Check: `/backend/src/services/fileService.ts`
@@ -304,12 +307,13 @@ Before considering documentation complete:
 
 ## 📦 What's Included
 
-### Documentation (10 files):
+### Documentation (11 files):
 ✅ README.md
 ✅ QUICKSTART.md
 ✅ PROJECT_SUMMARY.md
 ✅ ARCHITECTURE.md
 ✅ CHUNKING.md
+✅ CHUNKING_QUICK_REF.md
 ✅ TROUBLESHOOTING.md
 ✅ TESTING_GUIDE.md
 ✅ DOCUMENTATION_INDEX.md (this file)
