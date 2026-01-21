@@ -127,9 +127,10 @@ The frontend will run on `http://localhost:3000`
 - Use the file uploader to upload PDF, DOCX, or TXT files
 - Add optional tags for organization
 - Documents are automatically:
-  - Parsed and chunked
+  - Parsed and chunked (1000 chars/chunk, 200 chars overlap)
   - Embedded using Gemini embeddings
   - Stored in MongoDB with vector embeddings
+  - 📖 See [CHUNKING.md](CHUNKING.md) for detailed chunking explanation
 
 ### 3. Chat with Your Documents
 - Go to Chat page (`/`)
