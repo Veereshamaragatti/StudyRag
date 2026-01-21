@@ -45,18 +45,26 @@ Welcome to the complete documentation for the StudyRAG Academic Assistant system
    - Database schema
    - RAG algorithm explanation
 
+7. **[CHUNKING.md](CHUNKING.md)** ✂️ **CHUNKING EXPLAINED**
+   - Chunk size and overlap settings
+   - Complete chunking process
+   - Visual examples and diagrams
+   - Performance considerations
+   - Customization guide
+   - Also see: **[CHUNKING_QUICK_REF.md](CHUNKING_QUICK_REF.md)** for a short summary
+
 ## 🔧 Operational Guides
 
 ### When Things Go Wrong:
 
-7. **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** 🆘 **PROBLEM SOLVING**
+8. **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** 🆘 **PROBLEM SOLVING**
    - Common issues & solutions
    - Error message explanations
    - Debugging techniques
    - FAQ section
    - Support resources
 
-8. **[TESTING_GUIDE.md](TESTING_GUIDE.md)** 🧪 **QUALITY ASSURANCE**
+9. **[TESTING_GUIDE.md](TESTING_GUIDE.md)** 🧪 **QUALITY ASSURANCE**
    - Complete testing workflow
    - Phase-by-phase testing
    - Test cases for all features
@@ -73,6 +81,8 @@ StudyRag/
 │   ├── QUICKSTART.md                # Quick start guide
 │   ├── PROJECT_SUMMARY.md           # Project overview
 │   ├── ARCHITECTURE.md              # Technical architecture
+│   ├── CHUNKING.md                  # Document chunking details
+│   ├── CHUNKING_QUICK_REF.md        # Quick chunking reference
 │   ├── TROUBLESHOOTING.md           # Problem solving
 │   ├── TESTING_GUIDE.md             # Testing procedures
 │   └── DOCUMENTATION_INDEX.md       # This file
@@ -122,6 +132,7 @@ StudyRag/
 
 ### "I want to understand how it works"
 → Read: **ARCHITECTURE.md**
+→ Read: **CHUNKING.md** (for document processing)
 → Read: **PROJECT_SUMMARY.md**
 → Read: **README.md** (tech stack section)
 
@@ -144,6 +155,12 @@ StudyRag/
 → Read: **ARCHITECTURE.md** (understand structure)
 → Read: **PROJECT_SUMMARY.md** (next steps section)
 → Follow existing code patterns
+
+### "I want to understand chunking"
+→ Read: **CHUNKING_QUICK_REF.md** ⚡ **QUICK ANSWER**
+→ Read: **CHUNKING.md** ⭐ **DETAILED EXPLANATION**
+→ Check: `/backend/src/utils/chunkText.ts`
+→ Check: `/backend/src/services/fileService.ts`
 
 ### "I need API documentation"
 → Read: **README.md** (API endpoints section)
@@ -290,11 +307,13 @@ Before considering documentation complete:
 
 ## 📦 What's Included
 
-### Documentation (9 files):
+### Documentation (11 files):
 ✅ README.md
 ✅ QUICKSTART.md
 ✅ PROJECT_SUMMARY.md
 ✅ ARCHITECTURE.md
+✅ CHUNKING.md
+✅ CHUNKING_QUICK_REF.md
 ✅ TROUBLESHOOTING.md
 ✅ TESTING_GUIDE.md
 ✅ DOCUMENTATION_INDEX.md (this file)
@@ -331,6 +350,7 @@ Before considering documentation complete:
 This documentation covers:
 - ✅ Complete setup instructions
 - ✅ Architecture understanding
+- ✅ Chunking process explained
 - ✅ Problem-solving guides
 - ✅ Testing procedures
 - ✅ API documentation
